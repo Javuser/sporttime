@@ -49,6 +49,7 @@ public class MemberController {
     public String deleteMember(@PathVariable Long memberId){
         repository.deleteById(memberId);
         return "redirect:/members";
+
     }
 
 }
