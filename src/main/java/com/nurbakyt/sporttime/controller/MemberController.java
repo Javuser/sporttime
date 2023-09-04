@@ -50,6 +50,7 @@ public class MemberController {
         repository.deleteById(memberId);
         return "redirect:/members";
 
+
         //hello
     }
 
