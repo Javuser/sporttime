@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Membership Form</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111111;
+        }
+    </style>
+</head>
+<body>
+    <h1>Membership Form</h1>
+    <ul>
+        <li><a href="/membership"> Membership</a></li>
+    </ul>
+    <form action="#" th:action="@{/membership/save_membership}" th:object="${membership}" method="post">
+        <p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Type: <input type="text" th:field="*{type}"  /></p>
+        <p>From: <input type="date" th:field="*{startDate}" /></p>
+        <p>To: <input type="date" th:field="*{endDate}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
