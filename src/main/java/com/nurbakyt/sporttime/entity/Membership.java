@@ -18,6 +18,9 @@ public class Membership {
     private String type;
     private LocalDate startDate;
     private LocalDate endDate;
+    //private Member member;
+
+
 
     public Membership(Long id, String type, LocalDate startDate, LocalDate endDate) {
         this.id = id;
