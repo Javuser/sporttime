@@ -22,6 +22,7 @@ public class Membership {
 
 
 
+
     public Membership(Long id, String type, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.type = type;
