@@ -1,6 +1,5 @@
 package com.nurbakyt.sporttime.entity;
 
-
 import jakarta.persistence.*;
 
 import java.time.*;
@@ -18,9 +17,6 @@ public class Membership {
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
-
-
-
 
     public Membership(Long id, String type, LocalDate startDate, LocalDate endDate) {
         this.id = id;
