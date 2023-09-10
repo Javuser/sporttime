@@ -52,5 +52,4 @@ public class MembershipController {
         return "redirect:/membership";
     }
 
-
 }

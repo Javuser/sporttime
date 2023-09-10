@@ -1,10 +1,7 @@
 package com.nurbakyt.sporttime.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.*;
 
@@ -18,7 +15,9 @@ public class Membership {
     private String type;
     private LocalDate startDate;
     private LocalDate endDate;
-    //private Member member;
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
 
 
@@ -59,6 +58,14 @@ public class Membership {
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public void setEndDate(LocalDate endDate) {

@@ -1,5 +1,6 @@
 package com.nurbakyt.sporttime;
 
+import com.nurbakyt.sporttime.entity.Member;
 import com.nurbakyt.sporttime.entity.Membership;
 import com.nurbakyt.sporttime.repository.MemberRepository;
 import com.nurbakyt.sporttime.repository.MembershipRepository;
@@ -25,13 +26,18 @@ public class SporttimeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        Member member = new Member();
+        member.setName("Berik");
+        member.setAge(20);
+        Member saved = repository.save(member);
+
         Membership membership = new Membership();
         membership.setType("Дневной абонемент");
         membership.setStartDate(LocalDate.parse("2023-11-30"));
         membership.setEndDate(LocalDate.parse("2023-12-31"));
-        //member.setAge(22);
-        //member.setName("Bekzat");
-        //repository.save(member);
+        membership.setMember(saved);
+
         membershipRepository.save(membership);
 
     }

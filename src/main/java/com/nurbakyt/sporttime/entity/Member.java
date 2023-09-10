@@ -1,9 +1,8 @@
 package com.nurbakyt.sporttime.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -14,6 +13,8 @@ public class Member {
     private Long id;
     private String name;
     private Integer age;
+    @OneToMany(mappedBy = "member")
+    private List<Membership> memberships;
 
     public Member(Long id, String name, Integer age) {
         this.id = id;
