@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.*;
+import java.util.List;
 
 @SpringBootApplication
 public class SporttimeApplication implements CommandLineRunner {
@@ -39,6 +40,8 @@ public class SporttimeApplication implements CommandLineRunner {
         membership.setMember(saved);
 
         membershipRepository.save(membership);
+        List<Membership> membershipList = membershipRepository.findAllByMemberId(saved.getId());
+        System.out.println(membershipList.size());
 
     }
 }
