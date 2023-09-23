@@ -37,11 +37,10 @@
     </ul>
 <!--    '/members/' + ${memberId} + '/new_membership'
 /members/{memberId}/save_membership-->
-    <form action="#" th:action="@{'/members/' + ${memberId} + '/save_membership'}" th:object="${membership}" method="post">
+    <form action="#" th:action="@{/members/save_member}" th:object="${member}" method="post">
         <p>Id: <input type="text" th:field="*{id}" /></p>
-        <p>Type: <input type="text" th:field="*{type}"  /></p>
-        <p>From: <input type="date" th:field="*{startDate}"  /></p>
-        <p>To: <input type="date" th:field="*{endDate}" /></p>
+        <p>Name: <input type="text" th:field="*{name}"  /></p>
+        <p>Age: <input type="text" th:field="*{age}"  /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>

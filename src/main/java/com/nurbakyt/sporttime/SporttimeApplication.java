@@ -11,6 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.*;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class SporttimeApplication implements CommandLineRunner {
@@ -42,6 +45,17 @@ public class SporttimeApplication implements CommandLineRunner {
         membershipRepository.save(membership);
         List<Membership> membershipList = membershipRepository.findAllByMemberId(saved.getId());
         System.out.println(membershipList.size());
+
+        LocalDate today = LocalDate.now();
+        System.out.println(today);
+
+//        List<Long> idFiltered = (List<Long>) membershipList.get(Math.toIntExact(member.getId()));
+        //Predicate<Membership> id = r -> r.getId() = membership.getMember().getId();
+
+//        List<Membership> filteredList;
+//
+//        filteredList = membershipList.stream()
+//                .filter(id -> idFiltered.)
 
     }
 }

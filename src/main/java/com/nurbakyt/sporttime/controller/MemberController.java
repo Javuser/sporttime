@@ -8,7 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/members")
@@ -33,7 +38,25 @@ public class MemberController {
     public String getMemberById(@PathVariable Long memberId,
                                 Model model){
         Member member = repository.findById(memberId).orElse(new Member());
+        List<Membership> membership = membershipRepository.findAllByMemberId(memberId);
+        Collections.sort(membership, Comparator.comparing(Membership::getEndDate).reversed());
+
+
+        LocalDate today = LocalDate.now();
+        for (Membership m : membership) {
+            LocalDate endDate = m.getEndDate();
+
+            Period period = Period.between(m.getStartDate(), endDate);
+
+            if (period.getMonths() == 1 && period.getDays() == 0
+                    && endDate.getYear() == today.getYear()) {
+                m.setStatus("YES");
+            } else {
+                m.setStatus("NO");
+            }
+        }
         model.addAttribute("member", member);
+        model.addAttribute("membership", membership);
         return "member/member_card";
     }
 
@@ -49,8 +72,12 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}/new_membership")
-    public String getCreateMembershipForm(Model model){
+    public String getCreateMembershipForm(Model model, @PathVariable Long memberId){
         model.addAttribute("membership", new Membership());
+       // model.addAttribute("membership");
+        final var member = repository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException(" "));
+
         return "membership/membership_form";
     }
 
@@ -58,9 +85,17 @@ public class MemberController {
     public String deleteMember(@PathVariable Long memberId){
         repository.deleteById(memberId);
         return "redirect:/members";
+    }
 
-
-        //hello
+    @GetMapping("/new_member")
+    public String getCreateMembershipForm(Model model){
+        model.addAttribute("member", new Member());
+        return "member/member_form";
+    }
+    @PostMapping("/save_member")
+    public String createMembership(@ModelAttribute Member member){
+        repository.save(member);
+        return "redirect:/members";
     }
 
 }
