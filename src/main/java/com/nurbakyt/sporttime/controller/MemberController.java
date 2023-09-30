@@ -72,6 +72,12 @@ public class MemberController {
 
     @GetMapping("/{memberId}/delete")
     public String deleteMember(@PathVariable Long memberId){
+       List<MembershipDto> memberships = membershipService.findAllByMemberId(memberId)
+                .stream()
+                .map(MembershipDto::toDto).collect(Collectors.toList());
+        for (MembershipDto membership : memberships) {
+            membershipService.deleteById(membership.getId());
+        }
         memberService.deleteById(memberId);
         return "redirect:/members";
     }

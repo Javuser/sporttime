@@ -42,11 +42,11 @@
             <th>Age</th>
             <th>Actions</th>
         </tr>
-        <tr th:each="member : ${members}">
-            <td th:text="${member.id}"></td>
-            <td th:text="${member.name}"></td>
-            <td th:text="${member.age}"></td>
-            <td> <a th:href="${'/members/' + member.id + '/delete' }">Delete</a> </td>
+        <tr th:each="memberDto : ${members}">
+            <td th:text="${memberDto.id}"></td>
+            <td th:text="${memberDto.name}"></td>
+            <td th:text="${memberDto.age}"></td>
+            <td> <a th:href="${'/members/' + memberDto.id + '/delete' }">Delete</a> </td>
         </tr>
     </table>
 </body>
