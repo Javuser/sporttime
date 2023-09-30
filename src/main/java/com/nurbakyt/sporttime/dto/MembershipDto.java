@@ -50,4 +50,48 @@ public class MembershipDto {
     public LocalDate getEndDate() {
         return endDate;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public MemberDto getMemberDto() {
+        return memberDto;
+    }
+
+    public void setMemberDto(MemberDto memberDto) {
+        this.memberDto = memberDto;
+    }
 }
