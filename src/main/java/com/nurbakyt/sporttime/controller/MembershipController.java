@@ -38,7 +38,7 @@ public class MembershipController {
 
     @GetMapping("/new_membership")
     public String getCreateMembershipForm(Model model){
-        model.addAttribute("membership", new Membership());
+        model.addAttribute("membership", new MembershipDto());
         return "membership/membership_form";
     }
     @GetMapping("/{membershipId}")
