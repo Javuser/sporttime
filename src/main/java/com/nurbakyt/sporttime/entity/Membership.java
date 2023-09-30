@@ -14,17 +14,15 @@ public class Membership {
     private String type;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String status;
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    public Membership(Long id, String type, LocalDate startDate, LocalDate endDate, String status) {
+    public Membership(Long id, String type, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.type = type;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.status = status;
     }
 
     public Membership() {
@@ -70,11 +68,4 @@ public class Membership {
         this.endDate = endDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
