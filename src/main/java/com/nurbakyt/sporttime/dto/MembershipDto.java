@@ -19,7 +19,7 @@ public class MembershipDto {
         dto.type = entity.getType();
         dto.startDate = entity.getStartDate();
         dto.endDate = entity.getEndDate();
-        dto.status = LocalDate.now().isBefore(entity.getEndDate())
+        dto.status = LocalDate.now().isBefore(entity.getEndDate()) && (LocalDate.now().isAfter(entity.getStartDate()))
                 ? "YES"
                 : "NO";
         dto.memberDto = new MemberDto();
