@@ -12,7 +12,10 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService{
 
     @Autowired
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public List<Member> findAll() {

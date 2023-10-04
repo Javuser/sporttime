@@ -5,6 +5,7 @@ import com.nurbakyt.sporttime.dto.MembershipDto;
 import com.nurbakyt.sporttime.entity.Membership;
 import com.nurbakyt.sporttime.service.MemberServiceImpl;
 import com.nurbakyt.sporttime.service.MembershipServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class MemberController {
                                 Model model){
         MemberDto member = memberService.findById(memberId)
                 .map(MemberDto::toDto)
-                .orElse(new MemberDto());
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
         List<MembershipDto> membership = membershipService.findAllByMemberId(memberId)
                 .stream()
                 .map(MembershipDto::toDto)
@@ -57,9 +58,8 @@ public class MemberController {
                                    @ModelAttribute MembershipDto membership){
         MemberDto member = memberService.findById(memberId)
                 .map(MemberDto::toDto)
-                .orElseThrow(() -> new RuntimeException(" "));
-
-        membership.memberDto = member;
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+        membership.setMemberDto(member);
         membershipService.save(membership.toEntity());
         return "redirect:/membership";
     }

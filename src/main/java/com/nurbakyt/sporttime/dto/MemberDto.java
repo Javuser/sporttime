@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDto {
-    public Long id;
-    public String name;
-    public Integer age;
+    private Long id;
+    private String name;
+    private Integer age;
 
 
     public static MemberDto toDto(Member entity) {

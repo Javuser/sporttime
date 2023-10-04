@@ -6,12 +6,12 @@ import com.nurbakyt.sporttime.entity.Membership;
 import java.time.LocalDate;
 
 public class MembershipDto {
-    public Long id;
-    public String type;
-    public LocalDate startDate;
-    public LocalDate endDate;
-    public String status;
-    public MemberDto memberDto;
+    private Long id;
+    private String type;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String status;
+    private MemberDto memberDto;
 
     public static MembershipDto toDto(Membership entity) {
         MembershipDto dto = new MembershipDto();
@@ -23,9 +23,9 @@ public class MembershipDto {
                 ? "YES"
                 : "NO";
         dto.memberDto = new MemberDto();
-        dto.memberDto.id = entity.getMember().getId();
-        dto.memberDto.age = entity.getMember().getAge();
-        dto.memberDto.name = entity.getMember().getName();
+        dto.memberDto.setId(entity.getMember().getId());
+        dto.memberDto.setAge(entity.getMember().getAge());
+        dto.memberDto.setName(entity.getMember().getName());
 
         return dto;
     }
@@ -38,17 +38,13 @@ public class MembershipDto {
         entity.setEndDate(this.endDate);
 
         Member member = new Member();
-        member.setId(this.memberDto.id);
-        member.setAge(this.memberDto.age);
-        member.setName(this.memberDto.name);
+        member.setId(this.memberDto.getId());
+        member.setAge(this.memberDto.getAge());
+        member.setName(this.memberDto.getName());
 
         entity.setMember(member);
 
         return entity;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
     }
 
     public Long getId() {
@@ -73,6 +69,10 @@ public class MembershipDto {
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
     public void setEndDate(LocalDate endDate) {

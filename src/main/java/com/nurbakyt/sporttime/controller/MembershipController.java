@@ -2,6 +2,7 @@ package com.nurbakyt.sporttime.controller;
 
 import com.nurbakyt.sporttime.dto.MembershipDto;
 import com.nurbakyt.sporttime.entity.Membership;
+import com.nurbakyt.sporttime.exception.EntityNotFoundException;
 import com.nurbakyt.sporttime.service.MembershipServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,10 +44,10 @@ public class MembershipController {
     }
     @GetMapping("/{membershipId}")
     public String getMemberById(@PathVariable Long membershipId,
-                                Model model){
+                                Model model) throws EntityNotFoundException {
         MembershipDto membership = membershipService.findById(membershipId)
                 .map(MembershipDto::toDto)
-                .orElse(new MembershipDto());
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
         model.addAttribute("membership", membership);
         return "membership/membership_card";
     }

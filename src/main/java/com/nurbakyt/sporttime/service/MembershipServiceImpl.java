@@ -13,7 +13,10 @@ import java.util.Optional;
 public class MembershipServiceImpl implements MembershipService{
 
     @Autowired
-    private MembershipRepository membershipRepository;
+    private final MembershipRepository membershipRepository;
+    public MembershipServiceImpl(MembershipRepository membershipRepository) {
+        this.membershipRepository = membershipRepository;
+    }
 
     @Override
     public List<Membership> findAllByMemberId(Long memberId) {
