@@ -16,7 +16,6 @@ public class MembershipServiceImpl implements MembershipService{
 
     private final MembershipRepository membershipRepository;
 
-    @Autowired
     public MembershipServiceImpl(MembershipRepository membershipRepository) {
         this.membershipRepository = membershipRepository;
     }

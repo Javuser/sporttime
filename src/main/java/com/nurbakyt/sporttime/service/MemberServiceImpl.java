@@ -11,8 +11,8 @@ import java.util.Optional;
 @Service
 public class MemberServiceImpl implements MemberService{
 
-    @Autowired
     private final MemberRepository memberRepository;
+
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

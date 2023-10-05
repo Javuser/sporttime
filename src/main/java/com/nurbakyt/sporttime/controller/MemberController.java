@@ -26,7 +26,7 @@ public class MemberController {
         this.membershipService = membershipService;
     }
 
-    @GetMapping()
+    @GetMapping
     public String getMembers(Model model){
         List<MemberDto> members = memberService.findAll()
                 .stream()
@@ -74,10 +74,9 @@ public class MemberController {
     public String deleteMember(@PathVariable Long memberId){
        List<MembershipDto> memberships = membershipService.deleteAllByMemberId(memberId)
                 .stream()
-                .map(MembershipDto::toDto).collect(Collectors.toList());
-        for (MembershipDto membership : memberships) {
-            membershipService.deleteById(membership.getId());
-        }
+                .map(MembershipDto::toDto)
+                .toList();
+        membershipService.deleteAllByMemberId(memberId);
         memberService.deleteById(memberId);
         return "redirect:/members";
     }

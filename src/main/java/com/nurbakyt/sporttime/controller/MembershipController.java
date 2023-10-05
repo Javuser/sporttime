@@ -43,7 +43,7 @@ public class MembershipController {
         return "membership/membership_form";
     }
     @GetMapping("/{membershipId}")
-    public String getMemberById(@PathVariable Long membershipId,
+    public String getMembershipById(@PathVariable Long membershipId,
                                 Model model) throws EntityNotFoundException {
         MembershipDto membership = membershipService.findById(membershipId)
                 .map(MembershipDto::toDto)
@@ -53,7 +53,7 @@ public class MembershipController {
     }
 
     @GetMapping("/{membershipId}/delete")
-    public String deleteMember(@PathVariable Long membershipId){
+    public String deleteMembership(@PathVariable Long membershipId){
         membershipService.deleteById(membershipId);
         return "redirect:/membership";
     }
