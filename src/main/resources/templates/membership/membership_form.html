@@ -35,7 +35,7 @@
         <li><a href="/membership"> Membership</a></li>
     </ul>
     <form action="#" th:action="@{'/members/' + ${memberId} + '/save_membership'}" th:object="${membership}" method="post">
-        <p>Id: <input type="text" th:field="*{id}" /></p>
+        <input type="hidden" th:field="*{id}" />
         <p>Type: <input type="text" th:field="*{type}"  /></p>
         <p>From: <input type="date" th:field="*{startDate}" /></p>
         <p>To: <input type="date" th:field="*{endDate}" /></p>
