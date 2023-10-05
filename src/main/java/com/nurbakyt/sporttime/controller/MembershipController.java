@@ -47,7 +47,7 @@ public class MembershipController {
                                 Model model) throws EntityNotFoundException {
         MembershipDto membership = membershipService.findById(membershipId)
                 .map(MembershipDto::toDto)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Membership with id = " + membershipId + " not found"));
         model.addAttribute("membership", membership);
         return "membership/membership_card";
     }

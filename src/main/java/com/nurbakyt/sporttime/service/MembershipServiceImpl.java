@@ -10,10 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+
 public class MembershipServiceImpl implements MembershipService{
 
-    @Autowired
+
     private final MembershipRepository membershipRepository;
+
+    @Autowired
     public MembershipServiceImpl(MembershipRepository membershipRepository) {
         this.membershipRepository = membershipRepository;
     }
@@ -41,5 +44,10 @@ public class MembershipServiceImpl implements MembershipService{
     @Override
     public void deleteById(Long memberId) {
         membershipRepository.deleteById(memberId);
+    }
+
+    @Override
+    public List<Membership> deleteAllByMemberId(Long memberId) {
+        return membershipRepository.deleteAllByMemberId(memberId);
     }
 }

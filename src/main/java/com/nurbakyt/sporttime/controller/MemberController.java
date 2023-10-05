@@ -26,7 +26,7 @@ public class MemberController {
         this.membershipService = membershipService;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public String getMembers(Model model){
         List<MemberDto> members = memberService.findAll()
                 .stream()
@@ -41,15 +41,15 @@ public class MemberController {
                                 Model model){
         MemberDto member = memberService.findById(memberId)
                 .map(MemberDto::toDto)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
-        List<MembershipDto> membership = membershipService.findAllByMemberId(memberId)
+                .orElseThrow(() -> new EntityNotFoundException("Member with id = " + memberId + " not found "));
+        List<MembershipDto> memberships = membershipService.findAllByMemberId(memberId)
                 .stream()
                 .map(MembershipDto::toDto)
                 .sorted(Comparator.comparing(MembershipDto::getEndDate).reversed())
                 .collect(Collectors.toList());
 
         model.addAttribute("member", member);
-        model.addAttribute("membership", membership);
+        model.addAttribute("membership", memberships);
         return "member/member_card";
     }
 
@@ -58,7 +58,7 @@ public class MemberController {
                                    @ModelAttribute MembershipDto membership){
         MemberDto member = memberService.findById(memberId)
                 .map(MemberDto::toDto)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Member with id = " + memberId + " not found"));
         membership.setMemberDto(member);
         membershipService.save(membership.toEntity());
         return "redirect:/membership";
@@ -66,13 +66,13 @@ public class MemberController {
 
     @GetMapping("/{memberId}/new_membership")
     public String getCreateMembershipForm(Model model, @PathVariable Long memberId){
-        model.addAttribute("membership", new Membership());
+        model.addAttribute("membership", new MembershipDto());
         return "membership/membership_form";
     }
 
     @GetMapping("/{memberId}/delete")
     public String deleteMember(@PathVariable Long memberId){
-       List<MembershipDto> memberships = membershipService.findAllByMemberId(memberId)
+       List<MembershipDto> memberships = membershipService.deleteAllByMemberId(memberId)
                 .stream()
                 .map(MembershipDto::toDto).collect(Collectors.toList());
         for (MembershipDto membership : memberships) {

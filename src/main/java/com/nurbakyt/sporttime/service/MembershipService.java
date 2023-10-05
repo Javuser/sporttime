@@ -11,4 +11,5 @@ public interface MembershipService {
     void save(Membership membership);
     Optional<Membership> findById(Long memberId);
     void deleteById(Long memberId);
+    List<Membership> deleteAllByMemberId(Long memberId);
 }
