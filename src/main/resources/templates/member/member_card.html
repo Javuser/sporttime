@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Member Card</title>
-
 </head>
 <body>
     <h1>Member Card</h1>
@@ -14,5 +13,29 @@
     <p th:text="${member.name}"></p>
     <p>Age: </p>
     <p th:text="${member.age}"></p>
+
+    <ul>
+        <li><a th:href="'/members/' + ${memberId} + '/new_membership'">Add new membership</a></li>
+    </ul>
+
+    <table>
+        <th>Memberships</th>
+        <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Status</th>
+
+        <tr th:each="membership : ${membership}">
+        <td th:text="${membership.id}"></td>
+        <td th:text="${membership.type}"></td>
+        <td th:text="${membership.startDate}"></td>
+        <td th:text="${membership.endDate}"></td>
+        <td th:text="${membership.status}"></td>
+<!--        <td th:text="${#dates.temporalDifference(membership.startDate, membership.endDate).toDays() &lt;= 30 ? 'YES' : 'NO'}"></td>-->
+        </tr>
+    </table>
+
 </body>
 </html>

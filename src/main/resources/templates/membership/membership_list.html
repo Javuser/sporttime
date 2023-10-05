@@ -47,7 +47,7 @@
         <tr th:each="membership : ${membership}">
             <td th:text="${membership.id}"></td>
             <td th:text="${membership.type}"></td>
-            <td th:text="${membership.member.name}"></td>
+            <td th:text="${membership.memberDto.name}"></td>
             <td th:text="${membership.startDate}"></td>
             <td th:text="${membership.endDate}"></td>
             <td> <a th:href="${'/membership/' + membership.id + '/delete' }">Delete</a> </td>

@@ -35,10 +35,12 @@
         <li><a href="/membership">Membership</a></li>
         <li><a href="/members"> Members</a></li>
     </ul>
+<!--    '/members/' + ${memberId} + '/new_membership'
+/members/{memberId}/save_membership-->
     <form action="#" th:action="@{/members/save_member}" th:object="${member}" method="post">
         <p>Id: <input type="text" th:field="*{id}" /></p>
         <p>Name: <input type="text" th:field="*{name}"  /></p>
-        <p>Age: <input type="text" th:field="*{age}" /></p>
+        <p>Age: <input type="text" th:field="*{age}"  /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>
