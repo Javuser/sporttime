@@ -37,11 +37,11 @@ public class MembershipController {
         return "redirect:/membership";
     }
 
-    @GetMapping("/new_membership")
-    public String getCreateMembershipForm(Model model){
-        model.addAttribute("membership", new MembershipDto());
-        return "membership/membership_form";
-    }
+//    @GetMapping("/new_membership")
+//    public String getCreateMembershipForm(Model model){
+//        model.addAttribute("membership", new MembershipDto());
+//        return "membership/membership_form";
+//    }
     @GetMapping("/{membershipId}")
     public String getMembershipById(@PathVariable Long membershipId,
                                 Model model) throws EntityNotFoundException {
