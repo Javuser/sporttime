@@ -37,25 +37,9 @@ public class MembershipController {
         return "redirect:/membership";
     }
 
-//    @GetMapping("/new_membership")
-//    public String getCreateMembershipForm(Model model){
-//        model.addAttribute("membership", new MembershipDto());
-//        return "membership/membership_form";
-//    }
-    @GetMapping("/{membershipId}")
-    public String getMembershipById(@PathVariable Long membershipId,
-                                Model model) throws EntityNotFoundException {
-        MembershipDto membership = membershipService.findById(membershipId)
-                .map(MembershipDto::toDto)
-                .orElseThrow(() -> new EntityNotFoundException("Membership with id = " + membershipId + " not found"));
-        model.addAttribute("membership", membership);
-        return "membership/membership_card";
-    }
-
     @GetMapping("/{membershipId}/delete")
     public String deleteMembership(@PathVariable Long membershipId){
         membershipService.deleteById(membershipId);
         return "redirect:/membership";
     }
-
 }

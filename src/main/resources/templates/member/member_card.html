@@ -40,11 +40,11 @@
         }
         .social-icons li {
             display: inline-block;
-            margin-right: 10px; /* Adjust spacing between icons */
+            margin-right: 10px;
         }
         .social-icons img {
-            width: 30px; /* Adjust the icon size */
-            height: 30px; /* Adjust the icon size */
+            width: 30px;
+            height: 30px;
         }
     </style>
     <style>
@@ -81,7 +81,6 @@
                         <td th:text="${member.name}"></td>
                         <td th:text="${member.age}"></td>
                 </table>
-
                 <table class="table table-hover">
                     <th>Memberships</th>
                     <tr>
@@ -96,7 +95,6 @@
                         <td th:text="${membership.endDate}"></td>
                         <td th:text="${membership.status}"></td>
                         </tr>
-
                 </table>
                 <div class="text-right">
                     <a th:href="'/members/' + ${memberId} + '/new_membership'">
@@ -110,91 +108,31 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <footer class="bg-light text-center text-white">
-                    <!-- Grid container -->
                     <div class="container p-4 pb-0">
-                        <!-- Section: Social media -->
                         <section class="mb-4">
-
-
-                            <!-- Linkedin -->
-                            <a
-                                    class="btn text-white btn-floating m-1"
+                            <a class="btn text-white btn-floating m-1"
                                     style="background-color: #0082ca;"
                                     href="https://www.linkedin.com/in/nurbakyt-a-463666142/"
-                                    role="button"
-                            ><i class="fa fa-linkedin"></i></a>
-                            <!-- Github -->
-                            <a
-                                    class="btn text-white btn-floating m-1"
+                                    role="button"><i class="fa fa-linkedin"></i></a>
+                            <a class="btn text-white btn-floating m-1"
                                     style="background-color: #333333;"
                                     href="https://github.com/Javuser"
-                                    role="button"
-                            ><i class="fa fa-github"></i
-                            ></a>
-
-                            <a
-                                    class="btn text-white btn-floating m-1"
+                                    role="button"><i class="fa fa-github"></i>
+                            </a>
+                            <a class="btn text-white btn-floating m-1"
                                     style="background-color: #0088cc;"
                                     href="https://t.me/nurbakyt210"
-                                    role="button"
-                            ><i class="fa fa-telegram"></i>
+                                    role="button"><i class="fa fa-telegram"></i>
                             </a>
-
                         </section>
-                        <!-- Section: Social media -->
                     </div>
-
-                    <!-- Copyright -->
                     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                         © 2023 Copyright
                     </div>
-                    <!-- Copyright -->
                 </footer>
             </div>
             <div class="col-md-1"></div>
         </div>
-
     </div>
 </head>
-
-
-
-<body>
-<!--    <h1>Member Card</h1>-->
-
-<!--    <p>Id: </p>-->
-<!--    <p th:text="${member.id}"></p>-->
-<!--    <p>Name: </p>-->
-<!--    <p th:text="${member.name}"></p>-->
-<!--    <p>Age: </p>-->
-<!--    <p th:text="${member.age}"></p>-->
-
-<!--    <ul>-->
-<!--        <li>-->
-<!--            <a th:href="'/members/' + ${memberId} + '/new_membership'">-->
-<!--                <button type="submit" class="btn btn-primary mb-2"> Add new membership </button>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--    </ul>-->
-
-<!--    <table>-->
-<!--        <th>Memberships</th>-->
-<!--        <tr>-->
-<!--            <th>Id</th>-->
-<!--            <th>Type</th>-->
-<!--            <th>From</th>-->
-<!--            <th>To</th>-->
-<!--            <th>Status</th>-->
-
-<!--        <tr th:each="membership : ${membership}">-->
-<!--        <td th:text="${membership.id}"></td>-->
-<!--        <td th:text="${membership.type}"></td>-->
-<!--        <td th:text="${membership.startDate}"></td>-->
-<!--        <td th:text="${membership.endDate}"></td>-->
-<!--        <td th:text="${membership.status}"></td>-->
-<!--&lt;!&ndash;        <td th:text="${#dates.temporalDifference(membership.startDate, membership.endDate).toDays() &lt;= 30 ? 'YES' : 'NO'}"></td>&ndash;&gt;-->
-<!--        </tr>-->
-<!--    </table>-->
-
-</body>
 </html>

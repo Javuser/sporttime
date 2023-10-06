@@ -1,11 +1,7 @@
 package com.nurbakyt.sporttime.dto;
 
 import com.nurbakyt.sporttime.entity.Member;
-import com.nurbakyt.sporttime.entity.Membership;
-import jakarta.persistence.OneToMany;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MemberDto {
     private Long id;
