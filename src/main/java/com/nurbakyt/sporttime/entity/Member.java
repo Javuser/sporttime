@@ -13,13 +13,15 @@ public class Member {
     private Long id;
     private String name;
     private Integer age;
+    private Long tg_chat_id;
     @OneToMany(mappedBy = "member")
     private List<Membership> memberships;
 
-    public Member(Long id, String name, Integer age) {
+    public Member(Long id, String name, Integer age, Long tg_chat_id) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.tg_chat_id = tg_chat_id;
     }
 
     public Member() {
@@ -47,5 +49,13 @@ public class Member {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Long getTg_chat_id() {
+        return tg_chat_id;
+    }
+
+    public void setTg_chat_id(Long tg_chat_id) {
+        this.tg_chat_id = tg_chat_id;
     }
 }
