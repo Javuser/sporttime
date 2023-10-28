@@ -2,28 +2,23 @@ package com.nurbakyt.sporttime.service.bot;
 
 import com.nurbakyt.sporttime.config.SportTimeBotConfig;
 import com.nurbakyt.sporttime.entity.Member;
-import com.nurbakyt.sporttime.entity.Membership;
+import com.nurbakyt.sporttime.entity.TgState;
 import com.nurbakyt.sporttime.repository.MemberRepository;
 import com.nurbakyt.sporttime.repository.MembershipRepository;
+import com.nurbakyt.sporttime.service.TgBotStateService;
 import com.vdurmont.emoji.EmojiParser;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.jpa.event.spi.CallbackType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
 
 @Slf4j
 @Component
@@ -35,16 +30,14 @@ public class SportTimeBot extends TelegramLongPollingBot {
     @Autowired
     private MembershipRepository membershipRepository;
 
-    private final SportTimeBotConfig sportTimeBotConfig;
+    @Autowired
+    private TgBotStateService tgBotStateService;
 
-    private enum UserRegistrationStep {
-        WELCOME, START, REGISTER, ASK_NAME, ASK_AGE, MY_DATA, COMPLETE, HELP
-    }
+    private final SportTimeBotConfig sportTimeBotConfig;
 
 
     private Member member;
 
-   private UserRegistrationStep registrationStep = UserRegistrationStep.START;
 
     private final static String HELP_TEXT = "This bot is created to demonstrate Spring capabilities.\n\n" +
             "You can execute commands from the main menu on the left or by typing commands:\n\n" +
@@ -65,11 +58,14 @@ public class SportTimeBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
 
+            TgState registrationStep = tgBotStateService.getStateForChatOrCreateNew(chatId);
             switch (registrationStep) {
 
                 case START:
-                    startCommandLineReceived(chatId, update.getMessage().getChat().getFirstName());
-                    registrationStep = UserRegistrationStep.REGISTER;
+                    if(message.equals("/start")) {
+                        startCommandLineReceived(chatId, update.getMessage().getChat().getFirstName());
+                        tgBotStateService.setStateForChat(chatId, TgState.REGISTER);
+                    }
 
                 case HELP:
                     sendHelp(chatId, HELP_TEXT);
@@ -78,17 +74,18 @@ public class SportTimeBot extends TelegramLongPollingBot {
 
                     if (message.equals("/register")) {
                         sendMessage(chatId, "Для регистрации, введите ваше имя:");
-                        registrationStep = UserRegistrationStep.ASK_NAME;
-
+//                        registrationStep = UserRegistrationStep.ASK_NAME;
+                        tgBotStateService.setStateForChat(chatId, TgState.ASK_NAME);
                     }
                     break;
 
                 case ASK_NAME:
                     member = new Member();
-                    member.setTg_chat_id(chatId);
+                    //member.setTg_chat_id(chatId);
                     member.setName(message);
                     sendMessage(chatId, "Отлично! Теперь введите ваш возраст:");
-                    registrationStep = UserRegistrationStep.ASK_AGE;
+//                    registrationStep = UserRegistrationStep.ASK_AGE;
+                    tgBotStateService.setStateForChat(chatId, TgState.ASK_AGE);
                     break;
 
                 case ASK_AGE:
@@ -97,7 +94,8 @@ public class SportTimeBot extends TelegramLongPollingBot {
                         member.setAge(age);
                         memberRepository.save(member);
                         sendMessage(chatId, "Спасибо! Регистрация завершена.");
-                        registrationStep = UserRegistrationStep.COMPLETE;
+//                        registrationStep = UserRegistrationStep.COMPLETE;
+                        tgBotStateService.setStateForChat(chatId, TgState.COMPLETE);
                     } else {
                         sendMessage(chatId, "Пожалуйста, введите ваш возраст цифрами.");
                     }
@@ -105,7 +103,8 @@ public class SportTimeBot extends TelegramLongPollingBot {
 
                 case COMPLETE:
                     //sendHelp(chatId, HELP_TEXT);
-                    registrationStep = UserRegistrationStep.START;
+//                    registrationStep = UserRegistrationStep.START;
+                    tgBotStateService.setStateForChat(chatId, TgState.START);
                     sendHelp(chatId, HELP_TEXT);
                     // Optionally, handle any additional logic after registration is complete
                     break;

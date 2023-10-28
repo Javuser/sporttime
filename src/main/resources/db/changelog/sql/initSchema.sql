@@ -19,3 +19,9 @@ create table if not exists membership(
 );
 
 
+create table if not exists tg_bot_state (
+    id         serial not null primary key,
+    tg_chat_id bigint not null,
+    chat_state varchar(128) not null,
+    unique (tg_chat_id)
+)
