@@ -9,7 +9,7 @@ import java.time.*;
 public class Membership {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String type;
     private LocalDate startDate;

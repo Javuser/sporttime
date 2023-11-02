@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Member List</title>
     <style>
         ul {
@@ -27,28 +30,108 @@
         li a:hover {
             background-color: #111111;
         }
+
     </style>
+    <style>
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .social-icons li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="text-center">
+                <h1 class="display-4">
+                    Member List
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <ul>
+                    <li><a href="/membership">Membership</a></li>
+                    <li><a href="/members/new_member">New Member</a></li>
+                </ul>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Info</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr th:each="memberDto : ${members}">
+<!--                        <td th:text="${memberDto.id}"></td>-->
+                        <td th:text="${memberDto.name}"></td>
+                        <td th:text="${memberDto.age}"></td>
+                        <td>
+                            <a th:href="${'/members/' + memberDto.id}">
+                                <button type="button" class="btn btn-info">Info</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="${'/members/' + memberDto.id + '/delete' }">
+                                <button type="button" class="btn btn-outline-danger">Delete</button>
+                            </a>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <footer class="bg-light text-center text-white">
+                <div class="container p-4 pb-0">
+                    <section class="mb-4">
+                        <a
+                                class="btn text-white btn-floating m-1"
+                                style="background-color: #0082ca;"
+                                href="https://www.linkedin.com/in/nurbakyt-a-463666142/"
+                                role="button"
+                        ><i class="fa fa-linkedin"></i></a>
+                        <a
+                                class="btn text-white btn-floating m-1"
+                                style="background-color: #333333;"
+                                href="https://github.com/Javuser"
+                                role="button"
+                        ><i class="fa fa-github"></i
+                        ></a>
+                        <a
+                                class="btn text-white btn-floating m-1"
+                                style="background-color: #0088cc;"
+                                href="https://t.me/nurbakyt210"
+                                role="button"
+                        ><i class="fa fa-telegram"></i>
+                        </a>
+
+                    </section>
+                </div>
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2023 Copyright
+                </div>
+            </footer>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
 </head>
-<body>
-    <h1>Member List</h1>
-    <ul>
-        <li><a href="/membership">Membership</a></li>
-        <li><a href="/members/new_member">New Member</a></li>
-    </ul>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Actions</th>
-        </tr>
-        <tr th:each="memberDto : ${members}">
-            <td th:text="${memberDto.id}"></td>
-            <td th:text="${memberDto.name}"></td>
-            <td th:text="${memberDto.age}"></td>
-            <td> <a th:href="${'/members/' + memberDto.id + '/delete' }">Delete</a> </td>
-        </tr>
-    </table>
-</body>
-<!--ToDO: Добавить абономент к пользователю-->
 </html>

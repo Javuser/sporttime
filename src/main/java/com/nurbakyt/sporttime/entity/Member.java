@@ -9,7 +9,7 @@ import java.util.List;
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Integer age;
@@ -48,4 +48,5 @@ public class Member {
     public void setAge(Integer age) {
         this.age = age;
     }
+
 }
