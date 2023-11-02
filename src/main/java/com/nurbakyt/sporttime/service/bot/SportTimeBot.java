@@ -74,17 +74,14 @@ public class SportTimeBot extends TelegramLongPollingBot {
 
                     if (message.equals("/register")) {
                         sendMessage(chatId, "Для регистрации, введите ваше имя:");
-//                        registrationStep = UserRegistrationStep.ASK_NAME;
                         tgBotStateService.setStateForChat(chatId, TgState.ASK_NAME);
                     }
                     break;
 
                 case ASK_NAME:
                     member = new Member();
-                    //member.setTg_chat_id(chatId);
                     member.setName(message);
                     sendMessage(chatId, "Отлично! Теперь введите ваш возраст:");
-//                    registrationStep = UserRegistrationStep.ASK_AGE;
                     tgBotStateService.setStateForChat(chatId, TgState.ASK_AGE);
                     break;
 
@@ -94,7 +91,6 @@ public class SportTimeBot extends TelegramLongPollingBot {
                         member.setAge(age);
                         memberRepository.save(member);
                         sendMessage(chatId, "Спасибо! Регистрация завершена.");
-//                        registrationStep = UserRegistrationStep.COMPLETE;
                         tgBotStateService.setStateForChat(chatId, TgState.COMPLETE);
                     } else {
                         sendMessage(chatId, "Пожалуйста, введите ваш возраст цифрами.");
@@ -102,11 +98,8 @@ public class SportTimeBot extends TelegramLongPollingBot {
                     break;
 
                 case COMPLETE:
-                    //sendHelp(chatId, HELP_TEXT);
-//                    registrationStep = UserRegistrationStep.START;
                     tgBotStateService.setStateForChat(chatId, TgState.START);
                     sendHelp(chatId, HELP_TEXT);
-                    // Optionally, handle any additional logic after registration is complete
                     break;
 
 
@@ -127,7 +120,6 @@ public class SportTimeBot extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
-        //sendMessage.setReplyMarkup(startCommandKeyboard());
 
         try {
             execute(sendMessage);

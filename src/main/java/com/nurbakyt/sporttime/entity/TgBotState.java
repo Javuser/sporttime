@@ -3,21 +3,19 @@ package com.nurbakyt.sporttime.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tg_bot_state")
+@Table(name = "bot_state")
 public class TgBotState {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "tg_chat_id")
     private Long chatId;
-    @Column(name = "chat_state")
-    private TgState tgState;
+    private TgState state;
 
-    public TgBotState(Long id, Long chatId, TgState tgState) {
+    public TgBotState(Long id, Long chatId, TgState state) {
         this.id = id;
         this.chatId = chatId;
-        this.tgState = tgState;
+        this.state = state;
     }
 
     public TgBotState() {
@@ -40,11 +38,11 @@ public class TgBotState {
         this.chatId = chatId;
     }
 
-    public TgState getTgState() {
-        return tgState;
+    public TgState getState() {
+        return state;
     }
 
-    public void setTgState(TgState tgState) {
-        this.tgState = tgState;
+    public void setState(TgState state) {
+        this.state = state;
     }
 }

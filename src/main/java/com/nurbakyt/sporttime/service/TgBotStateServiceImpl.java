@@ -24,7 +24,7 @@ public class TgBotStateServiceImpl implements TgBotStateService{
                 TgBotState tgBotState = new TgBotState(null, chatId, TgState.START);
                 return tgBotStateRepository.save(tgBotState);
 
-            }).getTgState();
+            }).getState();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TgBotStateServiceImpl implements TgBotStateService{
         TgBotState tgBotState = tgBotStateRepository.findByChatId(chatId)
                 .orElseThrow(EntityNotFoundException::new);
 
-        tgBotState.setTgState(tgState);
+        tgBotState.setState(tgState);
         tgBotStateRepository.save(tgBotState);
     }
 }

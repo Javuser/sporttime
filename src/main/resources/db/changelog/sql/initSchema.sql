@@ -1,5 +1,4 @@
-drop table if exists membership;
-drop table if exists member;
+drop table if exists membership, member, bot_state cascade;
 
 create table if not exists member(
     id serial primary key,
@@ -19,9 +18,9 @@ create table if not exists membership(
 );
 
 
-create table if not exists tg_bot_state (
+create table if not exists bot_state (
     id         serial not null primary key,
-    tg_chat_id bigint not null,
-    chat_state varchar(128) not null,
-    unique (tg_chat_id)
+    chat_id bigint not null,
+    state varchar(128) not null,
+    unique (chat_id)
 )
