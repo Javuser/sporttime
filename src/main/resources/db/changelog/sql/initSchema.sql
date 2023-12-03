@@ -14,7 +14,8 @@ create table if not exists membership(
     member_id  bigint not null
         constraint fk_membership_member
             references member(id),
-    status     varchar(255)
+    status     varchar(255),
+    code varchar(255)
 );
 
 
@@ -23,4 +24,24 @@ create table if not exists bot_state (
     chat_id bigint not null,
     state varchar(128) not null,
     unique (chat_id)
-)
+);
+
+CREATE TABLE if not exists role
+(
+    id   BIGSERIAL    NOT NULL PRIMARY KEY,
+    name varchar(255) NOT NULL
+);
+
+CREATE TABLE if not exists users
+(
+    id            BIGSERIAL    NOT NULL PRIMARY KEY,
+    role_id       int REFERENCES role (id) ON DELETE CASCADE,
+    username      varchar(255) NOT NULL,
+    password      varchar(255) NOT NULL,
+    first_name    varchar(255) NOT NULL,
+    last_name     varchar(255) NOT NULL,
+    email         varchar(255) NOT NULL,
+    personal_id   varchar(255) not null,
+    phone_number  varchar(255) not null,
+    UNIQUE (username)
+);

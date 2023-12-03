@@ -33,6 +33,7 @@ public class MembershipServiceImpl implements MembershipService{
     @Override
     public void save(Membership membership) {
         membershipRepository.save(membership);
+
     }
 
     @Override
@@ -49,4 +50,5 @@ public class MembershipServiceImpl implements MembershipService{
     public List<Membership> deleteAllByMemberId(Long memberId) {
         return membershipRepository.deleteAllByMemberId(memberId);
     }
+
 }
