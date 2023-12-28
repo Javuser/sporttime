@@ -3,6 +3,7 @@ package com.nurbakyt.sporttime.controller;
 import com.nurbakyt.sporttime.entity.User;
 import com.nurbakyt.sporttime.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,18 +26,7 @@ public class AuthController {
         return "auth/login";
     }
 
-    @GetMapping("/register")
-    public String register(Model model) {
-        model.addAttribute("user", new User());
-        return "auth/register";
-    }
 
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user, Model model) {
-        model.addAttribute("user", user);
-        userService.save(user);
-        return "redirect:/login";
-    }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {

@@ -1,4 +1,4 @@
-drop table if exists membership, member, bot_state cascade;
+drop table if exists membership, member, bot_state, users, role cascade;
 
 create table if not exists member(
     id serial primary key,
@@ -29,7 +29,8 @@ create table if not exists bot_state (
 CREATE TABLE if not exists role
 (
     id   BIGSERIAL    NOT NULL PRIMARY KEY,
-    name varchar(255) NOT NULL
+    name varchar(255) NOT NULL,
+    unique (name)
 );
 
 CREATE TABLE if not exists users
@@ -45,3 +46,14 @@ CREATE TABLE if not exists users
     phone_number  varchar(255) not null,
     UNIQUE (username)
 );
+
+create table if not exists userdemo (
+    id bigserial not null primary key ,
+    fname varchar(255) not null ,
+    lname varchar(255),
+    uname varchar(255),
+    registeredat timestamp,
+    command varchar(255)
+);
+
+drop table userdemo

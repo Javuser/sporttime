@@ -2,12 +2,16 @@ package com.nurbakyt.sporttime;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootTest
 class SporttimeApplicationTests {
 
     @Test
-    void contextLoads() {
+    void passwordTest() {
+        System.out.println(
+                new BCryptPasswordEncoder().encode("1234")
+        );
+
     }
 
 }

@@ -23,9 +23,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.
                 authorizeHttpRequests((request) -> request
-                        .requestMatchers("/register", "/error","/login", "/images/**")
+                        .requestMatchers("/error","/login", "/images/**")
                         .permitAll()
-                        .anyRequest().hasAnyRole("ADMIN"))
+                        .requestMatchers("/admin/**")
+                        .hasAnyRole("ADMIN")
+                        .anyRequest().hasAnyRole("ADMIN", "USER"))
                 .csrf(CsrfConfigurer::disable)
                 .cors(CorsConfigurer::disable)
                 .formLogin((form) -> form

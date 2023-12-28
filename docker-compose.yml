@@ -14,4 +14,14 @@ services:
     volumes:
       - pg_sporttime:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
+  app:
+    restart: always
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - pg_sporttime_db
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://pg_sporttime_db:5432/sporttime'
+      JAVA_OPTS: '-Xmx512m'
