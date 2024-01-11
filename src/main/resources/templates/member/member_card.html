@@ -57,7 +57,7 @@
 
             <div class="text-center">
                 <h1 class="display-4">
-                    Member Card
+                    Карта посетителя
                 </h1>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <ul>
-                    <li><a href="/members">Back</a></li>
+                    <li><a href="/members">Назад</a></li>
                 </ul>
             </div>
             <div class="col-md-1"></div>
@@ -75,19 +75,19 @@
             <div class="col-md-10">
                 <table class="table table-hover">
                     <tr>
-                        <th>Name</th>
-                        <th>Age</th>
+                        <th>Имя</th>
+                        <th>Возраст</th>
                     </tr>
                         <td th:text="${member.name}"></td>
                         <td th:text="${member.age}"></td>
                 </table>
                 <table class="table table-hover">
-                    <th>Memberships</th>
+                    <th>Абонементы</th>
                     <tr>
-                        <th>Type</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Status</th>
+                        <th>Тип</th>
+                        <th>С</th>
+                        <th>До</th>
+                        <th>Статус</th>
 
                         <tr th:each="membership : ${membership}">
                         <td th:text="${membership.type}"></td>
@@ -98,7 +98,7 @@
                 </table>
                 <div class="text-right">
                     <a th:href="'/members/' + ${memberId} + '/new_membership'">
-                        <button type="submit" class="btn btn-primary mb-2"> Add new membership </button>
+                        <button type="submit" class="btn btn-primary mb-2"> Добавить новый абонемент </button>
                     </a>
                 </div>
             </div>

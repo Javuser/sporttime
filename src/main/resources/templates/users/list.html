@@ -75,11 +75,11 @@
           <div class="col-md-10">
               <table class="table table-hover">
                   <tr>
-                      <th>username</th>
-                      <th>first name</th>
-                      <th>last name</th>
+                      <th>юзернейм</th>
+                      <th>имя</th>
+                      <th>фамилия</th>
                       <th>email</th>
-                      <th>phone number</th>
+                      <th>номер телефона</th>
                   </tr>
                   <tr th:each="users : ${user}">
                       <!--                        <td th:text="${memberDto.id}"></td>-->
@@ -90,12 +90,12 @@
                       <td th:text="${users.phoneNumber}"></td>
                       <td>
                           <a th:href="${'/users/' + users.id}">
-                              <button type="button" class="btn btn-info">Info</button>
+                              <button type="button" class="btn btn-info">Информация</button>
                           </a>
                       </td>
                       <td>
                           <a th:href="${'/users/' + users.id + '/delete' }">
-                              <button type="button" class="btn btn-outline-danger">Delete</button>
+                              <button type="button" class="btn btn-outline-danger">Удалить</button>
                           </a>
                       </td>
 
@@ -140,10 +140,6 @@
               </footer>
           </div>
           <div class="col-md-1"></div>
-
-          <!--            <form class="d-flex" th:action="@{/login}">-->
-          <!--                <button class="btn btn-outline-success text-white" type="submit">Log out</button>-->
-          <!--            </form>-->
       </div>
   </div>
 </body>

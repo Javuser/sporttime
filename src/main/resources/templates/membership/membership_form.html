@@ -36,7 +36,7 @@
         <div class="row">
             <div class="text-center">
                 <h1 class="display-4">
-                    Membership Form
+                    Форма абономента
                 </h1>
             </div>
         </div>
@@ -44,7 +44,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <ul>
-                    <li><a href="/membership"> Membership</a></li>
+                    <li><a href="/membership"> Абонементы</a></li>
                 </ul>
             </div>
             <div class="col-md-1"></div>
@@ -54,9 +54,9 @@
             <div class="col-md-10">
                     <form action="#" th:action="@{'/members/' + ${memberId} + '/save_membership'}" th:object="${membership}" method="post">
                         <input type="hidden" th:field="*{id}" />
-                        <p>Type: <input type="text" th:field="*{type}"  /></p>
-                        <p>From: <input type="date" th:field="*{startDate}" /></p>
-                        <p>To: <input type="date" th:field="*{endDate}" /></p>
+                        <p>Тип: <input type="text" th:field="*{type}"  /></p>
+                        <p>С: <input type="date" th:field="*{startDate}" /></p>
+                        <p>До: <input type="date" th:field="*{endDate}" /></p>
                         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
                     </form>
             </div>
