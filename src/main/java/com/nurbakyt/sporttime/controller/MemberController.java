@@ -96,14 +96,4 @@ public class MemberController {
         memberService.save(member.toEntity());
         return "redirect:/members";
     }
-
-//
-    @GetMapping("/members")
-    public String changeLocale(@RequestParam String lang, HttpServletRequest request, HttpServletResponse response) {
-        Locale newLocale = new Locale(lang);
-        LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-        localeResolver.setLocale(request, response, newLocale);
-        return "redirect:/";
-    }
-//
 }
