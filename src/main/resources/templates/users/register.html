@@ -163,7 +163,8 @@
 </div>
 -->
 
-<form action="action_page.php">
+<form th:action="@{/admin/new-user}" th:object="${user}" method="post">
+
   <div class="container">
     <h1>Регистрация</h1>
     <p>Заполните форму ниже для создание аккаунта.</p>
