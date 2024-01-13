@@ -88,11 +88,11 @@
                       <td th:text="${users.lastName}"></td>
                       <td th:text="${users.email}"></td>
                       <td th:text="${users.phoneNumber}"></td>
-                      <td>
-                          <a th:href="${'/users/' + users.id}">
-                              <button type="button" class="btn btn-info">Информация</button>
-                          </a>
-                      </td>
+<!--                      <td>-->
+<!--                          <a th:href="${'/users/' + users.id}">-->
+<!--                              <button type="button" class="btn btn-info">Информация</button>-->
+<!--                          </a>-->
+<!--                      </td>-->
                       <td>
                           <a th:href="${'/users/' + users.id + '/delete' }">
                               <button type="button" class="btn btn-outline-danger">Удалить</button>
