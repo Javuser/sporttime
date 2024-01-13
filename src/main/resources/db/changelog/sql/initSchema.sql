@@ -3,7 +3,7 @@ drop table if exists membership, member, bot_state, users, role cascade;
 create table if not exists member(
     id serial primary key,
     name varchar(255) not null,
-    age integer
+    age integer not null
 );
 
 create table if not exists membership(
