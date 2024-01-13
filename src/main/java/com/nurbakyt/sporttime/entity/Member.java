@@ -13,18 +13,14 @@ public class Member {
     private Long id;
     private String name;
     private Integer age;
-    private String tgNickname;
-    private Integer phoneNumber;
 
     @OneToMany(mappedBy = "member")
     private List<Membership> memberships;
 
-    public Member(Long id, String name, Integer age, String tgNickname, Integer phoneNumber) {
+    public Member(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.tgNickname = tgNickname;
-        this.phoneNumber = phoneNumber;
     }
 
     public Member() {
@@ -54,19 +50,4 @@ public class Member {
         this.age = age;
     }
 
-    public String getTgNickname() {
-        return tgNickname;
-    }
-
-    public void setTgNickname(String tgNickname) {
-        this.tgNickname = tgNickname;
-    }
-
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 }
