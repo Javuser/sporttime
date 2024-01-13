@@ -6,12 +6,17 @@ import com.nurbakyt.sporttime.entity.Membership;
 import com.nurbakyt.sporttime.service.MemberServiceImpl;
 import com.nurbakyt.sporttime.service.MembershipServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Controller
@@ -92,4 +97,13 @@ public class MemberController {
         return "redirect:/members";
     }
 
+//
+    @GetMapping("/members")
+    public String changeLocale(@RequestParam String lang, HttpServletRequest request, HttpServletResponse response) {
+        Locale newLocale = new Locale(lang);
+        LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+        localeResolver.setLocale(request, response, newLocale);
+        return "redirect:/";
+    }
+//
 }
