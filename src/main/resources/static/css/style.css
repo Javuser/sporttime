@@ -116,7 +116,7 @@ body {
 /* Menu */
 .menu {
     width: 100%;
-    background: linear-gradient(to right, #0e0e0e 70%, #142d2a);
+    background: linear-gradient(to right, #0e0e0e 10%, #04AA6D);
     padding: 12px 0;
 }
 
@@ -249,7 +249,7 @@ body {
 
 .client {
     background: #fff;
-    color: #000;
+    color: #04AA6D;
     padding: 20px 10px;
     margin-right: 20px;
     text-align: center;
