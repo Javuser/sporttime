@@ -3,7 +3,9 @@ drop table if exists membership, member, bot_state, users, role cascade;
 create table if not exists member(
     id serial primary key,
     name varchar(255) not null,
-    age integer not null
+    age integer not null,
+    IIN varchar(255) NOT NULL,
+    p_number varchar(255)
 );
 
 create table if not exists membership(
@@ -15,7 +17,7 @@ create table if not exists membership(
         constraint fk_membership_member
             references member(id),
     status     varchar(255),
-    code varchar(255)
+    price integer
 );
 
 

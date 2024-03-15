@@ -57,6 +57,7 @@
                         <th>Посетитель</th>
                         <th>С</th>
                         <th>До</th>
+                        <th>Цена</th>
                         <th>Действие</th>
                     </tr>
                     <tr th:each="membership : ${membership}">
@@ -64,6 +65,7 @@
                         <td th:text="${membership.memberDto.name}"></td>
                         <td th:text="${membership.startDate}"></td>
                         <td th:text="${membership.endDate}"></td>
+                        <td th:text="${membership.price}"></td>
                         <td>
                             <a th:href="${'/membership/' + membership.id + '/delete' }">
                                 <button type="button" class="btn btn-outline-danger">Delete</button>

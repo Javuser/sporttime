@@ -77,9 +77,13 @@
                     <tr>
                         <th>Имя</th>
                         <th>Возраст</th>
+                        <th>ИИН</th>
+                        <th>Телефон номер</th>
                     </tr>
                         <td th:text="${member.name}"></td>
                         <td th:text="${member.age}"></td>
+                        <td th:text="${member.IIN}"></td>
+                        <td th:text="${member.pNumber}"></td>
                 </table>
                 <table class="table table-hover">
                     <th>Абонементы</th>
@@ -88,12 +92,14 @@
                         <th>С</th>
                         <th>До</th>
                         <th>Статус</th>
+                        <th>Цена</th>
 
                         <tr th:each="membership : ${membership}">
                         <td th:text="${membership.type}"></td>
                         <td th:text="${membership.startDate}"></td>
                         <td th:text="${membership.endDate}"></td>
                         <td th:text="${membership.status}"></td>
+                        <td th:text="${membership.price}"></td>
                         </tr>
                 </table>
                 <div class="text-right">

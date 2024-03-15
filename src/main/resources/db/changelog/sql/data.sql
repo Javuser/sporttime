@@ -1,7 +1,7 @@
-INSERT INTO member ( age, name) VALUES ( 20, 'Berik');
-INSERT INTO member ( age, name) VALUES ( 22, 'Nurbakyt');
-INSERT INTO member ( age, name) VALUES ( 18, 'Ruslan');
-INSERT INTO member ( age, name) VALUES ( 25, 'Yerlan');
+INSERT INTO member ( age, name, iin) VALUES ( 20, 'Berik', '030423601189');
+INSERT INTO member ( age, name, iin) VALUES ( 22, 'Nurbakyt', '010623501189');
+INSERT INTO member ( age, name, iin) VALUES ( 18, 'Ruslan', '050105651243');
+INSERT INTO member ( age, name, iin) VALUES ( 25, 'Yerlan', '990623987654');
 
 INSERT INTO role (name) values ('ROLE_USER'),
                                ('ROLE_ADMIN');

@@ -11,6 +11,7 @@ public class MembershipDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private String status;
+    private Integer price;
     private MemberDto memberDto;
 
     public static MembershipDto toDto(Membership entity) {
@@ -23,6 +24,7 @@ public class MembershipDto {
                 && ((LocalDate.now().isEqual(entity.getStartDate()) ||(LocalDate.now().isEqual(entity.getStartDate()))))
                 ? "YES"
                 : "NO";
+        dto.price = entity.getPrice();
         dto.memberDto = new MemberDto();
         dto.memberDto.setId(entity.getMember().getId());
         dto.memberDto.setAge(entity.getMember().getAge());
@@ -37,12 +39,14 @@ public class MembershipDto {
         entity.setType(this.type);
         entity.setStartDate(this.startDate);
         entity.setEndDate(this.endDate);
+        entity.setPrice(this.price);
 
         Member member = new Member();
         member.setId(this.memberDto.getId());
         member.setAge(this.memberDto.getAge());
         member.setName(this.memberDto.getName());
-
+        member.setIIN(this.memberDto.getIIN());
+        member.setPNumber(this.memberDto.getpNumber());
         entity.setMember(member);
 
         return entity;
@@ -94,5 +98,13 @@ public class MembershipDto {
 
     public void setMemberDto(MemberDto memberDto) {
         this.memberDto = memberDto;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

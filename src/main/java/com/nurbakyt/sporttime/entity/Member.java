@@ -15,14 +15,19 @@ public class Member {
     private Long id;
     private String name;
     private Integer age;
+    private String IIN;
+    private String pNumber;
 
     @OneToMany(mappedBy = "member")
     private List<Membership> memberships;
 
-    public Member(Long id, String name, Integer age) {
+    public Member(Long id, String name, Integer age, String IIN, String pNumber, List<Membership> memberships) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.IIN = IIN;
+        this.pNumber = pNumber;
+        this.memberships = memberships;
     }
 
     public Member() {

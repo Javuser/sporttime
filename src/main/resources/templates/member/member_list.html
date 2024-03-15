@@ -76,6 +76,8 @@
                     <tr>
                         <th>Имя</th>
                         <th>Возраст</th>
+                        <th>ИИН</th>
+                        <th>Телефон номер</th>
                         <th>Информация</th>
                         <th>Действие</th>
                     </tr>
@@ -83,6 +85,8 @@
 <!--                        <td th:text="${memberDto.id}"></td>-->
                         <td th:text="${memberDto.name}"></td>
                         <td th:text="${memberDto.age}"></td>
+                        <td th:text="${memberDto.IIN}"></td>
+                        <td th:text="${memberDto.pNumber}"></td>
                         <td>
                             <a th:href="${'/members/' + memberDto.id}">
                                 <button type="button" class="btn btn-info">Информация</button>
